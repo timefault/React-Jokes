@@ -1,0 +1,7 @@
+.debug {
+    outline: 2px dashed green !important;
+}
+
+.debug * {
+    outline: 1px dashed red !important;
+}
