@@ -84,7 +84,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             label="Pun"
                             name="Pun"
                             onChange={setCategories}
-                        // checked={categoriesState.Pun}
+                            checked={categories.Pun}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
@@ -93,7 +93,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             label="Misc"
                             name="Misc"
                             onChange={setCategories}
-                        // checked={categoriesState.Misc}
+                            checked={categories.Misc}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
@@ -102,7 +102,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             label="Spooky"
                             name="Spooky"
                             onChange={setCategories}
-                        // checked={categoriesState.Spooky}
+                            checked={categories.Spooky}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
@@ -111,7 +111,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             label="Christmas"
                             name="Christmas"
                             onChange={setCategories}
-                        // checked={categoriesState.Christmas}
+                            checked={categories.Christmas}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
@@ -120,7 +120,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             label="Programming"
                             name="Programming"
                             onChange={setCategories}
-                        // checked={categories.Programming}
+                            checked={categories.Programming}
                         ></Form.Check>
                     </Col>
                 </Row>
