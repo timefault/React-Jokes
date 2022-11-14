@@ -10,7 +10,7 @@ export function JokePage() {
                     <Col>
                         <Joke />
                     </Col>
-                    <Col>
+                    {/* <Col>
                         <Joke />
                     </Col>
                     <Col>
@@ -18,7 +18,7 @@ export function JokePage() {
                     </Col>
                     <Col>
                         <Joke />
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         </>

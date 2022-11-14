@@ -1,17 +1,28 @@
+import { validateTileUUID } from '@fitbit/sdk/lib/ProjectConfiguration';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import Placeholder from 'react-bootstrap/Placeholder';
 
+type Category = "Pun" | "Misc" | "Spooky" | "Christmas" | "Programming";
 export function Joke() {
-
-
     const API_ENDPOINT = "https://v2.jokeapi.dev/joke/Any";
 
     const [joke, setJoke] = useState({} as any);
+    const [categories, setCategories] = useState({
+        Pun: false, Misc: false, Spooky: false, Christmas: false, Programming: true
+    })
 
+    const handleCategoriesChange = (e: any) => {
+        const { name, checked } = e.target;
+
+        const currState = { ...categories };
+        currState[name as Category] = checked;
+        setCategories(currState);
+        // console.log(categories);     This value is old
+    };
     const init = () => {
-        axios.get(API_ENDPOINT).then(res => { setJoke(res.data); console.log(res) }).catch(err => console.log(err));
+        axios.get(API_ENDPOINT).then(res => { setJoke(res.data) }).catch(err => console.log(err));
     };
 
     useEffect(init, []);
@@ -19,7 +30,7 @@ export function Joke() {
     return (
         <Card>
             <Card.Header>
-                <JokeControls />
+                <JokeControls setCategories={handleCategoriesChange} categories={categories} />
             </Card.Header>
             <Card.Body>
                 {
@@ -61,7 +72,8 @@ export function TwoPartType({ setup, delivery }: TwoPartTypeProps) {
     );
 }
 
-export function JokeControls() {
+export function JokeControls({ setCategories, categories }: { setCategories: (e: SyntheticEvent) => void, categories: { Pun: boolean, Misc: boolean, Spooky: boolean, Christmas: boolean, Programming: boolean } }) {
+    console.log(categories);
     return (
         <Form>
             <Form.Group className="">
@@ -69,31 +81,46 @@ export function JokeControls() {
                     <Col sm={6} xl={4}>
                         <Form.Check
                             type="checkbox"
-                            label="Programming"
+                            label="Pun"
+                            name="Pun"
+                            onChange={setCategories}
+                        // checked={categoriesState.Pun}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Misc"
-                        ></Form.Check>
-                    </Col>
-                    <Col sm={6} xl={4}>
-                        <Form.Check
-                            type="checkbox"
-                            label="Pun"
+                            name="Misc"
+                            onChange={setCategories}
+                        // checked={categoriesState.Misc}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Spooky"
+                            name="Spooky"
+                            onChange={setCategories}
+                        // checked={categoriesState.Spooky}
                         ></Form.Check>
                     </Col>
                     <Col sm={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Christmas"
+                            name="Christmas"
+                            onChange={setCategories}
+                        // checked={categoriesState.Christmas}
+                        ></Form.Check>
+                    </Col>
+                    <Col sm={6} xl={4}>
+                        <Form.Check
+                            type="checkbox"
+                            label="Programming"
+                            name="Programming"
+                            onChange={setCategories}
+                        // checked={categories.Programming}
                         ></Form.Check>
                     </Col>
                 </Row>
