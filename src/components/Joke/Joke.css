@@ -1,0 +1,42 @@
+:root {
+    --bg-primary: lightgreen;
+    --bg-secondary: powderblue;
+    --bg-tertiary: green;
+}
+
+.card {
+    height: 500px;
+}
+
+.card-header {
+    background-color: var(--bg-tertiary) !important;
+    color: whitesmoke !important;
+}
+
+.card-body {
+    background-color: var(--bg-primary);
+}
+
+.card-body p {
+    background-color: var(--bg-secondary) !important;
+    box-shadow: 1px 1px 5px black;
+}
+
+.card-footer {
+    background-color: var(--bg-tertiary) !important;
+}
+
+input[type=checkbox] {
+    background-color: hsl(50, 100%, 50%);
+}
+
+input[type=checkbox]:checked {
+    background-color: hsl(50, 100%, 30%);
+}
+
+button {
+    background-color: purple !important;
+    border: none;
+    outline: none;
+
+}

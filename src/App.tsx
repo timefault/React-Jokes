@@ -1,4 +1,4 @@
-import { JokePage } from './pages/JokePage'
+import { JokePage } from './pages/JokePage/JokePage'
 
 function App() {
 

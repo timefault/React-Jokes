@@ -5,3 +5,7 @@
 .debug * {
     outline: 1px dashed red !important;
 }
+
+body {
+    background-color: hsl(270, 25%, 25%);
+}

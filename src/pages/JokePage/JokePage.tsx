@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { Joke } from "../components/Joke";
+import { Joke } from "../../components/Joke/Joke";
 
 export function JokePage() {
     return (
@@ -10,15 +10,15 @@ export function JokePage() {
                     <Col>
                         <Joke />
                     </Col>
-                    {/* <Col>
-                        <Joke />
-                    </Col>
                     <Col>
                         <Joke />
                     </Col>
                     <Col>
                         <Joke />
-                    </Col> */}
+                    </Col>
+                    <Col>
+                        <Joke />
+                    </Col>
                 </Row>
             </Container>
         </>

@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import Placeholder from 'react-bootstrap/Placeholder';
+import './Joke.css';
 
 type Category = "Pun" | "Misc" | "Spooky" | "Christmas" | "Programming";
 
@@ -38,6 +39,7 @@ export function Joke() {
             if (element[1]) endpoint += element[0] + ',';
         });
         if (endpoint.endsWith(',')) endpoint = endpoint.slice(0, -1);
+        endpoint += '?blacklistFlags=nsfw,racist,sexist,explicit';
         console.log(endpoint);
         return endpoint;
     };
@@ -50,11 +52,11 @@ export function Joke() {
 
 
     return (
-        <Card>
+        <Card className="h-100">
             <Card.Header>
                 <JokeControls setCategories={handleCategoriesChange} categories={categories} />
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="d-flex flex-column justify-content-around">
                 {
                     Object.keys(joke).length === 0 ?
                         <>
