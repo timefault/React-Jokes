@@ -1,31 +1,53 @@
-import { validateTileUUID } from '@fitbit/sdk/lib/ProjectConfiguration';
 import axios from 'axios';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import Placeholder from 'react-bootstrap/Placeholder';
 
 type Category = "Pun" | "Misc" | "Spooky" | "Christmas" | "Programming";
+
 export function Joke() {
-    const API_ENDPOINT = "https://v2.jokeapi.dev/joke/Any";
 
     const [joke, setJoke] = useState({} as any);
+
     const [categories, setCategories] = useState({
         Pun: false, Misc: false, Spooky: false, Christmas: false, Programming: true
     })
 
-    const handleCategoriesChange = (e: any) => {
-        const { name, checked } = e.target;
+
+    const init = () => {
+        fetchJoke();
+    };
+
+    useEffect(init, []);
+
+
+    const API_ENDPOINT = "https://v2.jokeapi.dev/joke/";
+
+    // const handleCategoriesChange = () => (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleCategoriesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = e.target as HTMLInputElement;
 
         const currState = { ...categories };
         currState[name as Category] = checked;
         setCategories(currState);
-        // console.log(categories);     This value is old
-    };
-    const init = () => {
-        axios.get(API_ENDPOINT).then(res => { setJoke(res.data) }).catch(err => console.log(err));
     };
 
-    useEffect(init, []);
+    const getEndpoint = () => {
+        let endpoint = API_ENDPOINT;
+        Object.entries(categories).forEach(element => {
+            if (element[1]) endpoint += element[0] + ',';
+        });
+        if (endpoint.endsWith(',')) endpoint = endpoint.slice(0, -1);
+        console.log(endpoint);
+        return endpoint;
+    };
+
+    const fetchJoke = () => {
+        axios.get(getEndpoint()).then(res => { setJoke(res.data) }).catch(err => console.log(err));
+    };
+
+    const handleButtonClick = (e: any) => fetchJoke();
+
 
     return (
         <Card>
@@ -51,7 +73,7 @@ export function Joke() {
                 }
             </Card.Body>
             <Card.Footer>
-                <Button>Next Joke</Button>
+                <Button onClick={handleButtonClick}>Next Joke</Button>
             </Card.Footer>
         </Card >
     );
@@ -72,8 +94,8 @@ export function TwoPartType({ setup, delivery }: TwoPartTypeProps) {
     );
 }
 
-export function JokeControls({ setCategories, categories }: { setCategories: (e: SyntheticEvent) => void, categories: { Pun: boolean, Misc: boolean, Spooky: boolean, Christmas: boolean, Programming: boolean } }) {
-    console.log(categories);
+export function JokeControls({ setCategories, categories }: { setCategories: (e: React.ChangeEvent<HTMLInputElement>) => void, categories: { Pun: boolean, Misc: boolean, Spooky: boolean, Christmas: boolean, Programming: boolean } }) {
+    // console.log(categories);
     return (
         <Form>
             <Form.Group className="">
