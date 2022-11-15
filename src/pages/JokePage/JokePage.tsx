@@ -1,10 +1,15 @@
-import { Col, Container, Row } from "react-bootstrap";
-import { Joke } from "../../components/Joke/Joke";
+import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Joke } from "../../components/Joke/Joke"
+import { Sidebar as Menu } from '../../components/Sidebar/Sidebar';
 
 export function JokePage() {
     return (
         <>
-            <h1 className="text-center py-2 bg-warning">Jokes</h1>
+
+            <Navbar className="py-2 bg-warning justify-content-between mb-2">
+                <Menu />
+                <h1>Jokes</h1>
+            </Navbar>
             <Container>
                 <Row xs={1} md={2} lg={3}>
                     <Col>

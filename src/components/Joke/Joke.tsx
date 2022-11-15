@@ -4,6 +4,7 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import Placeholder from 'react-bootstrap/Placeholder';
 import './Joke.css';
 
+
 type Category = "Pun" | "Misc" | "Spooky" | "Christmas" | "Programming";
 
 export function Joke() {
@@ -74,8 +75,8 @@ export function Joke() {
                         </>
                 }
             </Card.Body>
-            <Card.Footer>
-                <Button onClick={handleButtonClick}>Next Joke</Button>
+            <Card.Footer className="d-flex justify-content-center">
+                <Button className="button" onClick={handleButtonClick}>Next Joke</Button>
             </Card.Footer>
         </Card >
     );
@@ -102,7 +103,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
         <Form>
             <Form.Group className="">
                 <Row>
-                    <Col sm={6} xl={4}>
+                    <Col xs={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Pun"
@@ -111,7 +112,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             checked={categories.Pun}
                         ></Form.Check>
                     </Col>
-                    <Col sm={6} xl={4}>
+                    <Col xs={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Misc"
@@ -120,7 +121,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             checked={categories.Misc}
                         ></Form.Check>
                     </Col>
-                    <Col sm={6} xl={4}>
+                    <Col xs={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Spooky"
@@ -129,7 +130,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             checked={categories.Spooky}
                         ></Form.Check>
                     </Col>
-                    <Col sm={6} xl={4}>
+                    <Col xs={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Christmas"
@@ -138,7 +139,7 @@ export function JokeControls({ setCategories, categories }: { setCategories: (e:
                             checked={categories.Christmas}
                         ></Form.Check>
                     </Col>
-                    <Col sm={6} xl={4}>
+                    <Col xs={6} xl={4}>
                         <Form.Check
                             type="checkbox"
                             label="Programming"

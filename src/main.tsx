@@ -7,8 +7,6 @@ import { Container } from 'react-bootstrap';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Container>
-      <App />
-    </Container>
+    <App />
   </React.StrictMode>
 )
