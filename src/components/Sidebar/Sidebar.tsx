@@ -1,28 +1,48 @@
-import { ChangeEvent, useState } from "react";
-import { Button, Offcanvas } from "react-bootstrap";
-import './Sidebar.css';
+import { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+
 
 export function Sidebar({ jokeCount, setJokeCount }: { jokeCount: number, setJokeCount: any }) {
-    const [show, setShow] = useState(false);
+    const anchor = "top";
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDrawer = (e: React.MouseEvent | React.KeyboardEvent) => {
+        if (e.type !== 'click') return
+        console.log(e.type);
+        setIsOpen(!isOpen);
+    };
+
+    const drawerTitle = () => {
+        return (
+            <h5>How many jokes?</h5>
+        );
+    };
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch
-            </Button>
-
-            <Offcanvas show={show} onHide={handleClose} placement="top" className="">
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>How many Jokes?</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body className="d-flex flex-column align-items-center justify-content-center gap-4">
-                    <label className="slider-label">{jokeCount}</label>
-                    <input type="range" min="1" max="10" className="slider" onChange={(e: ChangeEvent<HTMLInputElement>) => setJokeCount(parseInt(e.target.value))} value={jokeCount} />
-                </Offcanvas.Body>
-            </Offcanvas>
+            <Button variant="contained" onClick={toggleDrawer}>Menu</Button>
+            <Drawer
+                anchor={anchor}
+                open={isOpen}
+                onClose={toggleDrawer}
+            >
+                {drawerTitle()}
+                <p>{jokeCount}</p>
+                <Slider
+                    min={1}
+                    max={10}
+                    value={jokeCount}
+                    onChange={(e: Event, newValue: number | number[]) => { setJokeCount(newValue as number) }}
+                    sx={{
+                        color: 'purple',
+                        width: '90%',
+                        margin: '0 auto',
+                    }}
+                ></Slider>
+            </Drawer>
         </>
     );
 }

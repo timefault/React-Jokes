@@ -34,9 +34,12 @@ input[type=checkbox]:checked {
     background-color: hsl(50, 100%, 30%);
 }
 
-.button {
-    background-color: purple !important;
+button.button {
+    background-color: purple;
     border: none;
     outline: none;
+}
 
+button.button:hover {
+    background-color: hsl(300, 85%, 35%);
 }
