@@ -1,0 +1,31 @@
+.sidebar {
+    --clr: #222;
+}
+
+.MuiDrawer-paper {
+    background-color: var(--clr);
+    overflow: hidden;
+    padding-block-end: 1em;
+}
+
+
+.drawer p {
+    background-color: var(--clr);
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    color: goldenrod;
+}
+
+
+.drawer h5 {
+
+    background-color: rgb(255, 193, 7);
+    padding-block: 1em;
+    padding-inline-start: .5em;
+}
+
+button.menu-button {
+    margin-inline-start: .5em;
+    background-color: black;
+}

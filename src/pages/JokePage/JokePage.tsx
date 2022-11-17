@@ -11,7 +11,7 @@ export function JokePage() {
 
             <Navbar className="py-2 bg-warning  mb-2">
                 <Sidebar jokeCount={jokeCount} setJokeCount={setJokeCount} />
-                <h1 style={{ marginLeft: "auto", marginRight: "auto", transform: "translateX(-36px)" }}>Jokes</h1>
+                <h1 style={{ marginLeft: "auto", marginRight: "auto", transform: "translateX(-35px)" }}>Jokes</h1>
             </Navbar>
             <Container>
                 <Row xs={1} md={2} lg={3} className="gy-2">
