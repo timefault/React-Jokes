@@ -1,3 +1,6 @@
+/*
+    Notes:  typying is loose in a few places
+*/
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
@@ -7,7 +10,7 @@ import './Joke.css';
 
 type Category = "Pun" | "Misc" | "Spooky" | "Christmas" | "Programming";
 
-export function Joke() {
+export function Joke({ jokeIdCache, setJokeIdCache }: { jokeIdCache: string[], setJokeIdCache: any }) {
 
     const [joke, setJoke] = useState({} as any);
 
@@ -17,7 +20,13 @@ export function Joke() {
 
 
     const init = () => {
-        fetchJoke();
+        const firstFetch = async () => {
+            let res = await fetchJoke();
+            if (res?.data.error) return;
+            setJokeIdCache([...jokeIdCache, res.data.id]);
+            setJoke(res.data);
+        };
+        firstFetch();
     };
 
     useEffect(init, []);
@@ -45,11 +54,34 @@ export function Joke() {
         return endpoint;
     };
 
-    const fetchJoke = () => {
-        axios.get(getEndpoint()).then(res => { setJoke(res.data) }).catch(err => console.log(err));
+
+
+    const fetchJoke = async () => {
+        let res: any = await axios.get(getEndpoint()).then(res => { console.log(res); return (res); }).catch(err => console.log(err));
+        return res;
     };
 
-    const handleButtonClick = (e: any) => fetchJoke();
+    const getFreshJoke = async () => {
+        console.log('=====*******=======');
+
+        let attempt = 0;
+
+        while (attempt < 5) {
+            console.log(`attempt: ${attempt}`)
+            let res: any = await fetchJoke();
+            if (res.data.error) return;
+            if (jokeIdCache.includes(res.data.id)) {
+                attempt++;
+                continue;
+            }
+            setJokeIdCache([...jokeIdCache, res.data.id]);
+            setJoke(res.data);
+            console.log(jokeIdCache);
+            return;
+        }
+
+    };
+    const handleButtonClick = () => getFreshJoke();
 
 
     return (

@@ -6,6 +6,8 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 export function JokePage() {
     const [jokeCount, setJokeCount] = useState<number>(5);
 
+    const [jokeIdCache, setJokeIdCache] = useState([] as string[]);
+
     return (
         <>
 
@@ -19,8 +21,9 @@ export function JokePage() {
                         [...Array(jokeCount).keys()].map((el, idx) =>
                         (
                             <Col key={idx}>
-                                <Joke />
+                                <Joke jokeIdCache={jokeIdCache} setJokeIdCache={setJokeIdCache} />
                             </Col>
+
                         )
                         )}
                 </Row>
