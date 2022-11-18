@@ -40,7 +40,7 @@ export function Sidebar({ jokeCount, setJokeCount }: { jokeCount: number, setJok
                     value={jokeCount}
                     onChange={(e: Event, newValue: number | number[]) => { setJokeCount(newValue as number) }}
                     sx={{
-                        color: 'purple',
+                        color: "hsl(300 100% 35%)",
                         width: '90%',
                         margin: '0 auto'
                     }}

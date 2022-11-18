@@ -2,7 +2,7 @@
     --clr: #222;
 }
 
-.MuiDrawer-paper {
+.MuiDrawer-root .MuiDrawer-paper {
     background-color: var(--clr);
     overflow: hidden;
     padding-block-end: 1em;
@@ -28,4 +28,12 @@
 button.menu-button {
     margin-inline-start: .5em;
     background-color: black;
+}
+
+button.menu-button:hover {
+    background-color: hsl(300, 100%, 25%);
+}
+
+.MuiDrawer-root .slider {
+    background-color: var(--clr);
 }
