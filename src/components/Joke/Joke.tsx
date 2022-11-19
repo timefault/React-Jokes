@@ -50,24 +50,21 @@ export function Joke({ jokeIdCache, setJokeIdCache }: { jokeIdCache: string[], s
         });
         if (endpoint.endsWith(',')) endpoint = endpoint.slice(0, -1);
         endpoint += '?blacklistFlags=nsfw,racist,sexist,explicit';
-        console.log(endpoint);
         return endpoint;
     };
 
 
 
     const fetchJoke = async () => {
-        let res: any = await axios.get(getEndpoint()).then(res => { console.log(res); return (res); }).catch(err => console.log(err));
+        let res: any = await axios.get(getEndpoint()).then(res => res).catch(err => console.log(err));
         return res;
     };
 
     const getFreshJoke = async () => {
-        console.log('=====*******=======');
 
         let attempt = 0;
 
         while (attempt < 5) {
-            console.log(`attempt: ${attempt}`)
             let res: any = await fetchJoke();
             if (res.data.error) return;
             if (jokeIdCache.includes(res.data.id)) {
@@ -76,7 +73,6 @@ export function Joke({ jokeIdCache, setJokeIdCache }: { jokeIdCache: string[], s
             }
             setJokeIdCache([...jokeIdCache, res.data.id]);
             setJoke(res.data);
-            console.log(jokeIdCache);
             return;
         }
 
@@ -130,7 +126,6 @@ export function TwoPartType({ setup, delivery }: TwoPartTypeProps) {
 }
 
 export function JokeControls({ setCategories, categories }: { setCategories: (e: React.ChangeEvent<HTMLInputElement>) => void, categories: { Pun: boolean, Misc: boolean, Spooky: boolean, Christmas: boolean, Programming: boolean } }) {
-    // console.log(categories);
     return (
         <Form>
             <Form.Group className="">

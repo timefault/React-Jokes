@@ -12,7 +12,6 @@ export function Sidebar({ jokeCount, setJokeCount }: { jokeCount: number, setJok
 
     const toggleDrawer = (e: React.MouseEvent | React.KeyboardEvent) => {
         if (e.type !== 'click') return
-        console.log(e.type);
         setIsOpen(!isOpen);
     };
 
