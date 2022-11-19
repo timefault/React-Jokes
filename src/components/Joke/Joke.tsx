@@ -63,18 +63,21 @@ export function Joke({ jokeIdCache, setJokeIdCache }: { jokeIdCache: string[], s
     const getFreshJoke = async () => {
 
         let attempt = 0;
+        let res: any;
+
+        console.log(jokeIdCache);
 
         while (attempt < 5) {
-            let res: any = await fetchJoke();
+            res = await fetchJoke();
             if (res.data.error) return;
-            if (jokeIdCache.includes(res.data.id)) {
-                attempt++;
-                continue;
+            if (!jokeIdCache.includes(res.data.id)) {
+                break;
             }
-            setJokeIdCache([...jokeIdCache, res.data.id]);
-            setJoke(res.data);
-            return;
+            attempt++;
         }
+        setJokeIdCache([...jokeIdCache, res.data.id]);
+        setJoke(res.data);
+        return;
 
     };
     const handleButtonClick = () => getFreshJoke();
